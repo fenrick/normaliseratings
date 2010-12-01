@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <iTunes.h>
 
 int main (int argc, const char * argv[]) {
 
