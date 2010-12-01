@@ -1,0 +1,6 @@
+//
+// Prefix header for all source files of the 'NormaliseRatings' target in the 'NormaliseRatings' project
+//
+
+#ifdef __OBJC__
+#endif
