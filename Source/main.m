@@ -14,8 +14,19 @@ int main (int argc, const char * argv[]) {
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
     iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+    
+    // confirm itunes it active
     if ( [iTunes isRunning] ) {
-        NSLog(@"Current song is %@", [[iTunes currentTrack] name]);
+        // set fixed indexing
+        bool existingFixedIndexing;
+        existingFixedIndexing = [iTunes fixedIndexing];
+        [iTunes setFixedIndexing:true];
+        
+        
+        
+        
+        // restore fixed indexing
+        [iTunes setFixedIndexing:existingFixedIndexing];
     }
 
     [pool drain];
