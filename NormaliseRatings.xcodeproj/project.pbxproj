@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		962F387B12A5D31F00D20931 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 962F387A12A5D31E00D20931 /* ScriptingBridge.framework */; };
 		9658D66B12A5C784004DCC76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9658D66A12A5C784004DCC76 /* Foundation.framework */; };
 		9658D66E12A5C784004DCC76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9658D66D12A5C784004DCC76 /* main.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +25,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		962F387A12A5D31E00D20931 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
 		9658D66612A5C784004DCC76 /* NormaliseRatings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NormaliseRatings; sourceTree = BUILT_PRODUCTS_DIR; };
 		9658D66A12A5C784004DCC76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9658D66C12A5C784004DCC76 /* NormaliseRatings.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NormaliseRatings.1; sourceTree = "<group>"; };
@@ -37,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				962F387B12A5D31F00D20931 /* ScriptingBridge.framework in Frameworks */,
 				9658D66B12A5C784004DCC76 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -47,6 +50,7 @@
 		9658D65912A5C784004DCC76 = {
 			isa = PBXGroup;
 			children = (
+				962F387A12A5D31E00D20931 /* ScriptingBridge.framework */,
 				9658D66012A5C784004DCC76 /* Source */,
 				9658D66112A5C784004DCC76 /* Documentation */,
 				9658D66712A5C784004DCC76 /* Products */,
