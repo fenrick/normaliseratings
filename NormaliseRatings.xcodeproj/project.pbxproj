@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		962F387B12A5D31F00D20931 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 962F387A12A5D31E00D20931 /* ScriptingBridge.framework */; };
+		962F387E12A5DBDD00D20931 /* iTunesManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 962F387D12A5DBDD00D20931 /* iTunesManager.m */; };
 		9658D66B12A5C784004DCC76 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9658D66A12A5C784004DCC76 /* Foundation.framework */; };
 		9658D66E12A5C784004DCC76 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9658D66D12A5C784004DCC76 /* main.m */; };
 /* End PBXBuildFile section */
@@ -26,6 +27,8 @@
 
 /* Begin PBXFileReference section */
 		962F387A12A5D31E00D20931 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = System/Library/Frameworks/ScriptingBridge.framework; sourceTree = SDKROOT; };
+		962F387C12A5DBDD00D20931 /* iTunesManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesManager.h; sourceTree = "<group>"; };
+		962F387D12A5DBDD00D20931 /* iTunesManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesManager.m; sourceTree = "<group>"; };
 		9658D66612A5C784004DCC76 /* NormaliseRatings */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = NormaliseRatings; sourceTree = BUILT_PRODUCTS_DIR; };
 		9658D66A12A5C784004DCC76 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9658D66C12A5C784004DCC76 /* NormaliseRatings.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NormaliseRatings.1; sourceTree = "<group>"; };
@@ -64,6 +67,8 @@
 			children = (
 				9671390312A5CCD60079394E /* iTunes.h */,
 				9658D66D12A5C784004DCC76 /* main.m */,
+				962F387C12A5DBDD00D20931 /* iTunesManager.h */,
+				962F387D12A5DBDD00D20931 /* iTunesManager.m */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -151,6 +156,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9658D66E12A5C784004DCC76 /* main.m in Sources */,
+				962F387E12A5DBDD00D20931 /* iTunesManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

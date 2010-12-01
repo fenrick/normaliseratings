@@ -8,28 +8,19 @@
 
 #import <Foundation/Foundation.h>
 #import "iTunes.h"
+#import "iTunesManager.h"
 
 int main (int argc, const char * argv[]) {
 
     NSAutoreleasePool * pool = [[NSAutoreleasePool alloc] init];
     
-    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
+    iTunesManager *iTunesMgr = [[[iTunesManager alloc] init] autorelease];
     
     // confirm itunes it active
-    if ( [iTunes isRunning] ) {
-        // set fixed indexing
-        bool existingFixedIndexing;
-        existingFixedIndexing = [iTunes fixedIndexing];
-        [iTunes setFixedIndexing:true];
-        
-        
-        
-        
-        // restore fixed indexing
-        [iTunes setFixedIndexing:existingFixedIndexing];
+    if ( [[iTunesMgr iTunes] isRunning] ) {
+        [iTunesMgr loadMusicPlaylist];
     }
 
     [pool drain];
     return 0;
 }
-
