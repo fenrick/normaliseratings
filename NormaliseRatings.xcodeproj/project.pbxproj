@@ -29,6 +29,7 @@
 		9658D66C12A5C784004DCC76 /* NormaliseRatings.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = NormaliseRatings.1; sourceTree = "<group>"; };
 		9658D66D12A5C784004DCC76 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		9658D67012A5C784004DCC76 /* NormaliseRatings-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NormaliseRatings-Prefix.pch"; sourceTree = "<group>"; };
+		9671390312A5CCD60079394E /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,6 +58,7 @@
 		9658D66012A5C784004DCC76 /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				9671390312A5CCD60079394E /* iTunes.h */,
 				9658D66D12A5C784004DCC76 /* main.m */,
 			);
 			path = Source;
