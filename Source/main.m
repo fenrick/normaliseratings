@@ -18,7 +18,7 @@ int main (int argc, const char * argv[]) {
     
     // confirm itunes it active
     if ( [[iTunesMgr iTunes] isRunning] ) {
-        [iTunesMgr loadMusicPlaylist];
+        [iTunesMgr normaliseMusicRatings];
     }
 
     [pool drain];

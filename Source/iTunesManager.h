@@ -16,7 +16,9 @@
 
 @property(retain) iTunesApplication *iTunes;
 
-- (void) loadMusicPlaylist;
+- (double) normaliseDeviation:(double) x: (double) mean: (double) stdDev;
+- (double) normaliseStandardDeviation:(double) x;
+- (void) normaliseMusicRatings;
 - (iTunesSource *) findSource:(NSString *)sourceName;
 - (iTunesPlaylist *) findPlaylistFromLibrary:(NSString *) libraryName: (NSString *) playlistName;
 
