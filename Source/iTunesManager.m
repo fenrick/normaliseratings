@@ -150,15 +150,13 @@
                     timeGapRating = timeInterval / add_max_interval;
                     
                     // round rating
-                    if (timeGapRating < 0.9) {
-                        timeGapRating = 0;
-                    } else {
+                    if (timeGapRating >= 0.8) {
                         timeGapRating = 0.8;
+                        
+                        // add rating
+                        newRating += (timeGapRating + timeGapRating);
+                        totalRating += 2;
                     }
-                    
-                    // add rating
-                    newRating += timeGapRating;
-                    totalRating += 1;
                 }
             }
         }
