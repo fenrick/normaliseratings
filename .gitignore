@@ -6,3 +6,5 @@ NormaliseRatings.xcodeproj/project.xcworkspace/xcuserdata
 NormaliseRatings.xcodeproj/*.pbxuser
 
 NormaliseRatings.xcodeproj/xcuserdata
+
+build/
