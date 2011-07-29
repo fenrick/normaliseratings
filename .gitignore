@@ -8,3 +8,5 @@ NormaliseRatings.xcodeproj/*.pbxuser
 NormaliseRatings.xcodeproj/xcuserdata
 
 build/
+
+.DS_Store
