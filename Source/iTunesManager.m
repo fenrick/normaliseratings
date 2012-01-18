@@ -44,94 +44,71 @@
     
     int s0 = [tracks count];
     
-    double s1_play = 0;
-    double s2_play = 0;
     double mean_play = 0;
     double stdDev_play = 0;
     
-    double s1_skip = 0;
-    double s2_skip = 0;
     double mean_skip = 0;
     double stdDev_skip = 0;
     
-    NSDate *play_first_date = [NSDate dateWithNaturalLanguageString:@"31 December 2100 12:00:00 PM"];
-    NSDate *play_last_date = [NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"];
     double play_max_interval = 0;
-    NSDate *skip_first_date = [NSDate dateWithNaturalLanguageString:@"31 December 2100 12:00:00 PM"];
-    NSDate *skip_last_date = [NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"];
     double skip_max_interval = 0;
     
     double add_max_interval = 0;
-    NSDate *added_last_date = [NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"];
     NSDate *addedSince = [NSDate dateWithNaturalLanguageString:@"4 November 2010 12:00:00 AM"];
     
-    // loop over playlist processing all tracks
-    for(iTunesTrack *track in tracks) {            
-        // by play count
-        {
-            double playedCount = [track playedCount];
-            if (playedCount > 0) {
-                s1_play += playedCount;
-                s2_play += pow(playedCount, 2);
-                
-                // var by time
-                {
-                    NSDate *lastPlayed = [track playedDate];
-                    if (lastPlayed != nil) {
-                        play_first_date = [lastPlayed earlierDate:play_first_date];
-                        play_last_date = [lastPlayed laterDate:play_last_date];
-                    }
-                }
-            }
-        }
-        
-        // by skip count
-        {
-            double skippedCount = [track skippedCount];
-            if (skippedCount > 0) {
-                s1_skip += skippedCount;
-                s2_skip += pow(skippedCount, 2);
-                
-                // var by time
-                {
-                    NSDate *lastSkipped = [track skippedDate];
-                    if (lastSkipped != nil) {
-                        skip_first_date = [lastSkipped earlierDate:skip_first_date];
-                        skip_last_date = [lastSkipped laterDate:skip_last_date];
-                    }
-                }
-            }
-        }
-        
-        // by add date
-        {
-            NSDate *dateAdded = [track dateAdded];
-            if (dateAdded != nil) {
-                added_last_date = [dateAdded laterDate:added_last_date];
-            }
-        }
+    NSLog(@"Data retrieval");
+    
+    // played counts
+    NSArray *playedCounts = [tracks arrayByApplyingSelector:@selector(playedCount)];
+    int s1_play = [[playedCounts valueForKeyPath:@"@sum.intValue"] intValue];
+    int s2_play = 0;
+    for(NSNumber *count in playedCounts) {
+        s2_play += pow([count intValue], 2);
     }
     
+    // played dates
+    NSArray *playedDates = [tracks arrayByApplyingSelector:@selector(playedDate)];
+    NSDate *play_first_date = [[playedDates valueForKeyPath:@"@min.self"] earlierDate:[NSDate dateWithNaturalLanguageString:@"31 December 2100 12:00:00 PM"]];
+    NSDate *play_last_date = [[playedDates valueForKeyPath:@"@max.self"] laterDate:[NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"]];
+    
+    // skiped counts
+    NSArray *skippedCounts = [tracks arrayByApplyingSelector:@selector(skippedCount)];
+    int s1_skip = [[skippedCounts valueForKeyPath:@"@sum.intValue"] intValue];
+    int s2_skip = 0;
+    for(NSNumber *count in skippedCounts) {
+        s2_skip += pow([count intValue], 2);
+    }
+    
+    // played dates
+    NSArray *skippedDates = [tracks arrayByApplyingSelector:@selector(skippedDate)];
+    NSDate *skip_first_date = [[skippedDates valueForKeyPath:@"@min.self"] earlierDate:[NSDate dateWithNaturalLanguageString:@"31 December 2100 12:00:00 PM"]];
+    NSDate *skip_last_date = [[skippedDates valueForKeyPath:@"@max.self"] laterDate:[NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"]];
+    
+    // add dates
+    NSArray *addedDates = [tracks arrayByApplyingSelector:@selector(dateAdded)];
+    NSDate *added_last_date = [[addedDates valueForKeyPath:@"@max.self"] laterDate:[NSDate dateWithNaturalLanguageString:@"01 January 2000 12:00:00 AM"]];
+    
+    
+    NSLog(@"Calculations");
+    
     // calculate setup
-    {
-        mean_play = s1_play / s0;
-        double working = (s0 * s2_play) - pow(s1_play, 2);
-        stdDev_play = sqrt(working) / s0;
-        {
-            play_max_interval = [play_last_date timeIntervalSinceDate:play_first_date];
-        }
-    }
-    {
-        mean_skip = s1_skip / s0;
-        double working = (s0 * s2_skip) - pow(s1_skip, 2);
-        stdDev_skip = sqrt(working) / s0;
-        {
-            skip_max_interval = [skip_last_date timeIntervalSinceDate:skip_first_date];
-        }
-    }
-    {
-        add_max_interval = [added_last_date timeIntervalSinceDate:addedSince];
-    }
+    mean_play = s1_play / s0;
+    stdDev_play = sqrt((s0 * s2_play) - pow(s1_play, 2)) / s0;
+    play_max_interval = [play_last_date timeIntervalSinceDate:play_first_date];
+    mean_skip = s1_skip / s0;
+    stdDev_skip = sqrt((s0 * s2_skip) - pow(s1_skip, 2)) / s0;
+    skip_max_interval = [skip_last_date timeIntervalSinceDate:skip_first_date];
+    add_max_interval = [added_last_date timeIntervalSinceDate:addedSince];
+    
+    NSLog(@"Wiping track ratings");
+    
+    [tracks makeObjectsPerformSelector:@selector(setRating:)];
+    
+    NSLog(@"Wiping album ratings");
+    
+    [tracks makeObjectsPerformSelector:@selector(setAlbumRating:)];
+    
+    NSLog(@"Updating song rating");
     
     //
     for(iTunesTrack *track in tracks) {
